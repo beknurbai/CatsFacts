@@ -4,7 +4,6 @@ import android.accounts.NetworkErrorException;
 import android.util.Log;
 
 import com.example.catsfacts.models.CatsFactsModel;
-import com.example.catsfacts.models.FilmGhibli;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ import retrofit2.http.GET;
 
 public class CatsFactsService {
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://ghibliapi.herokuapp.com")
+            .baseUrl("https://cat-fact.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -43,38 +42,38 @@ public class CatsFactsService {
     }
 
     public void getListFacts(CatFactCallback callback) {
-        Call<List<FilmGhibli>> call = service.getFacts();
-        call.enqueue(new Callback<List<FilmGhibli>>() {
+        Call<List<CatsFactsModel>> call = service.getFacts();
+        call.enqueue(new Callback<List<CatsFactsModel>>() {
             @Override
-            public void onResponse(Call<List<FilmGhibli>> call, Response<List<FilmGhibli>> response) {
+            public void onResponse(Call<List<CatsFactsModel>> call, Response<List<CatsFactsModel>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         callback.onSuccess(response.body());
                     }
                 } else {
-                    callback.onFailure(new NetworkErrorException());
+                    //callback.onFailure(new NetworkErrorException());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<FilmGhibli>> call, Throwable t) {
+            public void onFailure(Call<List<CatsFactsModel>> call, Throwable t) {
                 Log.e("TAG", "onFailure: " + t.getMessage());
                 callback.onFailure(new Exception());
             }
         });
     }
 
-    public   interface CatFactCallback {
-        void onSuccess(List<FilmGhibli> facts);
+  public   interface CatFactCallback {
+        void onSuccess(List<CatsFactsModel> facts);
 
         void onResponseFacts(CatsFactsModel facts);
 
         void onFailure(Exception exception);
     }
 
-    public interface CatFactApi {
-        @GET("/films")
-        Call<List<FilmGhibli>> getFacts();
+   public interface CatFactApi {
+        @GET("facts/")
+        Call<List<CatsFactsModel>> getFacts();
 
         @GET("facts/:factID")
         Call<CatsFactsModel> getFactsById(String factsId);

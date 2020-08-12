@@ -15,7 +15,6 @@ import com.example.catsfacts.App;
 import com.example.catsfacts.R;
 import com.example.catsfacts.data.CatsFactsService;
 import com.example.catsfacts.models.CatsFactsModel;
-import com.example.catsfacts.models.FilmGhibli;
 
 import java.util.List;
 
@@ -40,13 +39,13 @@ public class FactsFragment extends Fragment  implements CatsFactsService.CatFact
         super.onViewCreated(view, savedInstanceState);
         factsHeading = view.findViewById(R.id.facts_heading);
         factDescription = view.findViewById(R.id.text_facts_description);
-//        if (model!=null){
-//
-//        }
+        if (model!=null){
+
+        }
     }
 
     @Override
-    public void onSuccess(List<FilmGhibli> facts) {
+    public void onSuccess(List<CatsFactsModel> facts) {
 
     }
 

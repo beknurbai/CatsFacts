@@ -11,22 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.catsfacts.R;
 import com.example.catsfacts.interfaces.OnItemClick;
 import com.example.catsfacts.models.CatsFactsModel;
-import com.example.catsfacts.models.FilmGhibli;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ForCatsFactsAdapter extends RecyclerView.Adapter<ForCatsFactsAdapter.CatsViewHolder> {
 
-    private List<FilmGhibli> list;
+    private List<CatsFactsModel> list;
     private OnItemClick onItemClick;
 
-    public ForCatsFactsAdapter(List<FilmGhibli> list, OnItemClick onItemClick) {
+    public ForCatsFactsAdapter(List<CatsFactsModel> list, OnItemClick onItemClick) {
         this.list = list;
         this.onItemClick = onItemClick;
     }
 
-    public void setAll(@NonNull List<FilmGhibli> list){
+    public void setAll(@NonNull List<CatsFactsModel> list){
         this.list.addAll(list);
         notifyDataSetChanged();
     }
@@ -68,9 +67,9 @@ public class ForCatsFactsAdapter extends RecyclerView.Adapter<ForCatsFactsAdapte
             });
         }
 
-        public void onBind(FilmGhibli catsFactsModel) {
-            textType.setText(catsFactsModel.getTitle());
-            textFacts.setText(catsFactsModel.getDescription());
+        public void onBind(CatsFactsModel catsFactsModel) {
+            textType.setText(catsFactsModel.getType());
+            textFacts.setText(catsFactsModel.getText());
         }
     }
 

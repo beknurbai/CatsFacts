@@ -18,7 +18,6 @@ import com.example.catsfacts.R;
 import com.example.catsfacts.data.CatsFactsService;
 import com.example.catsfacts.interfaces.OnItemClick;
 import com.example.catsfacts.models.CatsFactsModel;
-import com.example.catsfacts.models.FilmGhibli;
 import com.example.catsfacts.presentation.adapters.ForCatsFactsAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import java.util.List;
 public class CatsFactsFragment extends Fragment implements CatsFactsService.CatFactCallback {
     private RecyclerView recyclerView;
     private ForCatsFactsAdapter adapter;
-    private List<FilmGhibli> list;
+    private List<CatsFactsModel> list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +53,7 @@ public class CatsFactsFragment extends Fragment implements CatsFactsService.CatF
                 bundle.putString("id", list.get(pos).getId());
                 FactsFragment fragment = new FactsFragment();
                 fragment.setArguments(bundle);
-                //getChildFragmentManager().beginTransaction().add(R.id.container_fr, fragment).addToBackStack(null).commit();
+              //  getChildFragmentManager().beginTransaction().add(R.id.container_fr, fragment).addToBackStack(null).commit();
 
 
             }
@@ -64,7 +63,7 @@ public class CatsFactsFragment extends Fragment implements CatsFactsService.CatF
 
 
     @Override
-    public void onSuccess(List<FilmGhibli> facts) {
+    public void onSuccess(List<CatsFactsModel> facts) {
         adapter.setAll(facts);
         Log.e("TAG", "onSuccess: " + facts.size());
     }
@@ -76,7 +75,7 @@ public class CatsFactsFragment extends Fragment implements CatsFactsService.CatF
 
     @Override
     public void onFailure(Exception exception) {
-        Log.e("TAG", "onSuccess: ", exception);
+        Log.e("TAG", "onSuccess: ");
 
     }
 }
