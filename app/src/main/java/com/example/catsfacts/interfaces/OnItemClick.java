@@ -1,5 +1,5 @@
 package com.example.catsfacts.interfaces;
 
-public interface OnItemClick  {
+public interface OnItemClick{
     void onItemClick(int pos);
 }

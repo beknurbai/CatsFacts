@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/container_fr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager_in_main"
         android:layout_width="match_parent"

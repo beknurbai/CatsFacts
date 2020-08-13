@@ -3,6 +3,8 @@ package com.example.catsfacts.data;
 import android.accounts.NetworkErrorException;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.catsfacts.models.CatsFactsModel;
 
 import java.util.List;
@@ -26,15 +28,16 @@ public class CatsFactsService {
         Call<CatsFactsModel> call = service.getFactsById(id);
         call.enqueue(new Callback<CatsFactsModel>() {
             @Override
-            public void onResponse(Call<CatsFactsModel> call, Response<CatsFactsModel> response) {
+            public void onResponse(@NonNull Call<CatsFactsModel> call,@NonNull Response<CatsFactsModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.onResponseFacts(response.body());
+                    Log.e("lolo", "onResponse: "+response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<CatsFactsModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<CatsFactsModel> call, Throwable t) {
+                Log.e("lolo", "onFailure: "+t.getMessage() );
             }
         });
 
@@ -72,7 +75,7 @@ public class CatsFactsService {
     }
 
    public interface CatFactApi {
-        @GET("facts/")
+        @GET("facts/random?animal_type=dog&amount=100")
         Call<List<CatsFactsModel>> getFacts();
 
         @GET("facts/:factID")

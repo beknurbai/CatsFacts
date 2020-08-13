@@ -53,7 +53,7 @@ public class CatsFactsFragment extends Fragment implements CatsFactsService.CatF
                 bundle.putString("id", list.get(pos).getId());
                 FactsFragment fragment = new FactsFragment();
                 fragment.setArguments(bundle);
-              //  getChildFragmentManager().beginTransaction().add(R.id.container_fr, fragment).addToBackStack(null).commit();
+                getChildFragmentManager() .beginTransaction().add(R.id.container_fr, fragment).addToBackStack(null).commit();
 
 
             }

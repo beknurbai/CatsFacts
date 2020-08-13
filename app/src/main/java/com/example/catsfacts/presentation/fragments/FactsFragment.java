@@ -29,7 +29,6 @@ public class FactsFragment extends Fragment  implements CatsFactsService.CatFact
         if (bundle != null){
             String id = bundle.getString("id");
             App.factsService.getFactsById(id, this);}
-
         return inflater.inflate(R.layout.fragment_facts, container, false);
 
     }
