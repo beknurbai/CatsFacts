@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,7 @@ public class FactsFragment extends Fragment  implements CatsFactsService.CatFact
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bundle bundle = this.getArguments();
-        if (bundle != null){
-            String id = bundle.getString("id");
-            App.factsService.getFactsById(id, this);}
+
         return inflater.inflate(R.layout.fragment_facts, container, false);
 
     }
@@ -36,10 +34,31 @@ public class FactsFragment extends Fragment  implements CatsFactsService.CatFact
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        factsHeading = view.findViewById(R.id.facts_heading);
-        factDescription = view.findViewById(R.id.text_facts_description);
+        factsHeading = view.findViewById(R.id.text_heading_in_fr);
+        factDescription = view.findViewById(R.id.text_desc_in_fr);
         if (model!=null){
 
+        }
+        if (getArguments() != null) {
+            String id = getArguments().getString("id");
+            Log.d("check", id);
+                App.factsService.getFactsById(id, new CatsFactsService.CatFactCallback() {
+                    @Override
+                    public void onSuccess(List<CatsFactsModel> facts) {
+
+                    }
+
+                    @Override
+                    public void onResponseFacts(CatsFactsModel facts) {
+                        factsHeading.setText(facts.getType());
+                        factDescription.setText(facts.getText());
+                    }
+
+                    @Override
+                    public void onFailure(Exception exception) {
+
+                    }
+                });
         }
     }
 

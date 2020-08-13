@@ -126,6 +126,7 @@ public class CatsFactsModel {
         this.status = status;
     }
 
+
 }
 class Status {
 

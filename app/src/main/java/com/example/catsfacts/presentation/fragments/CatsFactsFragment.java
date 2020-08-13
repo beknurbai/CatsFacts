@@ -25,7 +25,6 @@ import java.util.List;
 
 
 public class CatsFactsFragment extends Fragment implements CatsFactsService.CatFactCallback {
-    private RecyclerView recyclerView;
     private ForCatsFactsAdapter adapter;
     private List<CatsFactsModel> list;
 
@@ -43,7 +42,7 @@ public class CatsFactsFragment extends Fragment implements CatsFactsService.CatF
 
         catsFactsService.getListFacts(this);
 
-        recyclerView = view.findViewById(R.id.rec_view_cats_fr);
+        RecyclerView recyclerView = view.findViewById(R.id.rec_view_cats_fr);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         list = new ArrayList<>();
         adapter = new ForCatsFactsAdapter(list, new OnItemClick() {
@@ -53,8 +52,8 @@ public class CatsFactsFragment extends Fragment implements CatsFactsService.CatF
                 bundle.putString("id", list.get(pos).getId());
                 FactsFragment fragment = new FactsFragment();
                 fragment.setArguments(bundle);
-                getChildFragmentManager() .beginTransaction().add(R.id.container_fr, fragment).addToBackStack(null).commit();
-
+                Log.d("check", list.get(pos).getId());
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_fr, fragment).addToBackStack(null).commit();
 
             }
         });

@@ -15,6 +15,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public class CatsFactsService {
     Retrofit retrofit = new Retrofit.Builder()
@@ -75,11 +76,14 @@ public class CatsFactsService {
     }
 
    public interface CatFactApi {
-        @GET("facts/random?animal_type=dog&amount=100")
+        @GET("facts/random?animal_type=dog&amount=10")
         Call<List<CatsFactsModel>> getFacts();
 
-        @GET("facts/:factID")
-        Call<CatsFactsModel> getFactsById(String factsId);
+        @GET("facts/{id}")
+        Call<CatsFactsModel> getFactsById (
+       @Path("id")String factsId
+
+                );
 
     }
 }
