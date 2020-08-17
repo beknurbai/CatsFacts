@@ -33,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("check", currentFragmentName);
         if (currentFragmentName.equals("FactsFragment")) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container_fr, new ViewPagerFragment()).commit();
-        } else {
+        }else {
             super.onBackPressed();
-
         }
 
     }

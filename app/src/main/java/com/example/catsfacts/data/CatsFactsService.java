@@ -81,9 +81,7 @@ public class CatsFactsService {
 
         @GET("facts/{id}")
         Call<CatsFactsModel> getFactsById (
-       @Path("id")String factsId
-
-                );
+       @Path("id")String factsId);
 
     }
 }
