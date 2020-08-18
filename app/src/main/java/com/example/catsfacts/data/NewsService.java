@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public class NewsService {
     public static List<NewsModels> list = new ArrayList<>();
@@ -27,7 +28,7 @@ public class NewsService {
 
     Retrofit retrofit = new Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://chroniclingamerica.loc.gov/")
+            .baseUrl("http://newsapi.org/")
             .build();
     NewsApi service = retrofit.create(NewsApi.class);
 
@@ -51,7 +52,7 @@ public class NewsService {
 
 
     public void getNews(NewsCallback callback) {
-        Call<List<NewsModels>> call = service.getNews();
+        Call<List<NewsModels>> call = service.getNews("ru","df9f8d1aa6de490a8d4e1d0d93a6ff91");
         call.enqueue(new Callback<List<NewsModels>>() {
             @Override
             public void onResponse(Call<List<NewsModels>> call, Response<List<NewsModels>> response) {
@@ -69,6 +70,7 @@ public class NewsService {
             @Override
             public void onFailure(Call<List<NewsModels>> call, Throwable t) {
                 callback.onFailure(new Exception());
+                Log.e("TAG", "onFailure: "+t.getMessage() );
             }
 
         });
@@ -76,9 +78,9 @@ public class NewsService {
     }
 
     public interface NewsCallback {
-        void onSuccess(List<NewsModels> films);
+        void onSuccess(List<NewsModels> news);
 
-        void onResponseFilm(NewsModels film);
+        void onResponseFilm(NewsModels news);
 
         void onFailure(Exception exception);
 
@@ -86,11 +88,11 @@ public class NewsService {
     }
 
     public interface NewsApi {
-        @GET("batches/")
-        Call<List<NewsModels>> getNews();
+        @GET("v2/top-headlines/")
+        Call<List<NewsModels>> getNews( @Query("country") String country,@Query("apiKey") String apiKey);
 
-        @GET("films/{id}")
-        Call<NewsModels> getNewsById(@Path("id") String newsId);
+        @GET("/{id}")
+        Call<NewsModels> getNewsById(@Query("id") String newsId);
 
     }
 

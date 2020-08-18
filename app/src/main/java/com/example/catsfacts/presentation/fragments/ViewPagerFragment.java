@@ -34,12 +34,12 @@ public class ViewPagerFragment extends Fragment {
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new CatsFactsFragment());
-        fragmentList.add(new FilmsFragment());
+        fragmentList.add(new NewsFragment());
         fragmentList.add(new AnimeFragment());
 
 
         viewPager = view.findViewById(R.id.view_pager_in_main);
-        fragmentAdapter = new SlideFragmentAdapter(requireActivity().getSupportFragmentManager(), fragmentList);
+        fragmentAdapter = new SlideFragmentAdapter(getChildFragmentManager(), fragmentList);
         viewPager.setAdapter(fragmentAdapter);
     }
 }

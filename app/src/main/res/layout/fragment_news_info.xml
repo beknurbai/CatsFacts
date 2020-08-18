@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.AnimeInfoFragment">
-
+    android:orientation="vertical"
+    tools:context=".presentation.fragments.NewsInfoFragment">
+<ImageView
+    android:id="@+id/image_news"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"/>
     <TextView
-        android:id="@+id/film_heading_in_fr"
+        android:id="@+id/new_heading_in_fr"
         android:text="Head"
         android:gravity="center"
         android:textSize="30sp"
@@ -15,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/film_desc_in_fr"
+        android:id="@+id/news_desc_in_fr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="20sp"

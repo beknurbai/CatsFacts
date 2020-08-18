@@ -1,21 +1,12 @@
 package com.example.catsfacts.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.catsfacts.R;
-import com.example.catsfacts.presentation.adapters.SlideFragmentAdapter;
-import com.example.catsfacts.presentation.fragments.AnimeFragment;
-import com.example.catsfacts.presentation.fragments.CatsFactsFragment;
-import com.example.catsfacts.presentation.fragments.FilmsFragment;
 import com.example.catsfacts.presentation.fragments.ViewPagerFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("check", currentFragmentName);
         if (currentFragmentName.equals("FactsFragment")) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container_fr, new ViewPagerFragment()).commit();
-        }else {
+        } else if (currentFragmentName.equals("AnimeFragment")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_fr, new ViewPagerFragment()).commit();
+        }
+        else {
             super.onBackPressed();
         }
 
